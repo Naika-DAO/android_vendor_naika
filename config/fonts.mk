@@ -78,5 +78,5 @@ PRODUCT_PACKAGES += \
 
 # Register vendor fonts
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,vendor/dot/fonts/prebuilt,$(TARGET_COPY_OUT_PRODUCT)/fonts) \
-    vendor/dot/fonts/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml
+    $(call find-copy-subdir-files,*,vendor/naika/fonts/prebuilt,$(TARGET_COPY_OUT_PRODUCT)/fonts) \
+    vendor/naika/fonts/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml

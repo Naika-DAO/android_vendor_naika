@@ -1,4 +1,5 @@
 # Copyright (C) 2018-20 Project dotOS
+# Copyright (C) 2022 NaikaOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,12 +14,12 @@
 # limitations under the License.
 
 ADDITIONAL_SYSTEM_PROPERTIES += \
-  ro.dot.version=$(DOT_VERSION) \
-  ro.dot.releasetype=$(DOT_BUILD_TYPE) \
-  ro.modversion=$(DOT_MOD_VERSION)
+  ro.naika.version=$(NAIKA_VERSION) \
+  ro.naika.releasetype=$(NAIKA_BUILD_TYPE) \
+  ro.modversion=$(NAIKA_MOD_VERSION)
 
-DOT_DISPLAY_VERSION := DotOS-$(DOT_MOD_VERSION)-$(DOT_BUILD_TYPE)
+NAIKA_DISPLAY_VERSION := NaikaOS-$(NAIKA_MOD_VERSION)-$(NAIKA_BUILD_TYPE)
 
 ADDITIONAL_SYSTEM_PROPERTIES += \
-  ro.dot.display.version=$(DOT_DISPLAY_VERSION)\
-  ro.dot.fingerprint=$(DOT_FINGERPRINT)
+  ro.naika.display.version=$(NAIKA_DISPLAY_VERSION)\
+  ro.naika.fingerprint=$(NAIKA_FINGERPRINT)

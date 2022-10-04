@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2021 The dotOS Project
+# Copyright (C) 2022 naikaOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/dot_arm.mk \
-    $(LOCAL_DIR)/dot_arm64.mk \
-    $(LOCAL_DIR)/dot_x86.mk \
-    $(LOCAL_DIR)/dot_x86_64.mk
+    $(LOCAL_DIR)/naika_arm.mk \
+    $(LOCAL_DIR)/naika_arm64.mk \
+    $(LOCAL_DIR)/naika_x86.mk \
+    $(LOCAL_DIR)/naika_x86_64.mk
 
 COMMON_LUNCH_CHOICES := \
-    dot_arm-userdebug \
-    dot_arm64-userdebug \
-    dot_x86-userdebug \
-    dot_x86_64-userdebug
+    naika_arm-userdebug \
+    naika_arm64-userdebug \
+    naika_x86-userdebug \
+    naika_x86_64-userdebug

@@ -25,9 +25,9 @@ VENDOR=*** FILL IN VENDOR ****
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
 
-DOT_ROOT="${MY_DIR}/../../.."
+NAIKA_ROOT="${MY_DIR}/../../.."
 
-HELPER="${DOT_ROOT}/vendor/dot/build/tools/extract_utils.sh"
+HELPER="${NAIKA_ROOT}/vendor/naika/build/tools/extract_utils.sh"
 if [ ! -f "${HELPER}" ]; then
     echo "Unable to find helper script at ${HELPER}"
     exit 1
@@ -60,7 +60,7 @@ if [ -z "${SRC}" ]; then
 fi
 
 # Initialize the helper
-setup_vendor "${DEVICE}" "${VENDOR}" "${DOT_ROOT}" false "${CLEAN_VENDOR}"
+setup_vendor "${DEVICE}" "${VENDOR}" "${NAIKA_ROOT}" false "${CLEAN_VENDOR}"
 
 extract "${MY_DIR}/proprietary-files.txt" "${SRC}" ${KANG} --section "${SECTION}"
 

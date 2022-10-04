@@ -1,4 +1,4 @@
-# Copyright (C) 2021 The dotOS Project
+# Copyright (C) 2022 NaikaOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,12 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, build/target/product/aosp_x86.mk)
+$(call inherit-product, build/target/product/aosp_x86_64.mk)
 $(call inherit-product, build/target/product/gsi_release.mk)
 
-# Inherit some common DotOS stuff.
-$(call inherit-product, vendor/dot/config/common.mk)
+# Inherit some common naikaOS stuff.
+$(call inherit-product, vendor/naika/config/common.mk)
 
-TARGET_USES_64_BIT_BINDER := true
-
-PRODUCT_NAME := dot_x86
+PRODUCT_NAME := naika_x86_64

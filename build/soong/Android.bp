@@ -2,7 +2,7 @@
 
 bootstrap_go_package {
     name: "soong-dot-generator",
-    pkgPath: "dot/soong/generator",
+    pkgPath: "naika/soong/generator",
     deps: [
         "blueprint",
         "blueprint-pathtools",

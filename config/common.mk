@@ -1,4 +1,5 @@
 # Copyright (C) 2020 Project dotOS
+# Copyright (C) 2022 Project naikaOS
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,9 +17,9 @@
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
 # branding
-include vendor/dot/config/branding.mk
+include vendor/naika/config/branding.mk
 
-PRODUCT_BRAND ?= dotOS
+PRODUCT_BRAND ?= NaikaOS
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -40,15 +41,15 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/dot/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/dot/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/dot/prebuilt/common/bin/50-dot.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-dot.sh
+    vendor/naika/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/naika/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/naika/prebuilt/common/bin/50-dot.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-dot.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/dot/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/dot/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/dot/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/naika/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/naika/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/naika/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.ota.allow_downgrade=true
@@ -57,20 +58,20 @@ endif
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/dot/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml \
-    vendor/dot/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
+    vendor/naika/config/permissions/backup.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/backup.xml \
+    vendor/naika/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml
 
-# Copy all Dot-specific init rc files
-$(foreach f,$(wildcard vendor/dot/prebuilt/common/etc/init/*.rc),\
+# Copy all naika-specific init rc files
+$(foreach f,$(wildcard vendor/naika/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_SYSTEM)/etc/init/$(notdir $f)))
 
 # Copy extra permissions on all targets
 PRODUCT_COPY_FILES += \
-    vendor/dot/config/permissions/privapp-permissions-extra.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-extra.xml
+    vendor/naika/config/permissions/privapp-permissions-extra.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-extra.xml
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
-    vendor/dot/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
+    vendor/naika/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -86,7 +87,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Clean up packages cache to avoid wrong strings and resources
 PRODUCT_COPY_FILES += \
-    vendor/dot/prebuilt/common/bin/clean_cache.sh:system/bin/clean_cache.sh
+    vendor/naika/prebuilt/common/bin/clean_cache.sh:system/bin/clean_cache.sh
 
 # Don't compile SystemUITests
 # EXCLUDE_SYSTEMUI_TESTS := true
@@ -107,8 +108,8 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Device Overlays
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/dot/overlay
-PRODUCT_PACKAGE_OVERLAYS += vendor/dot/overlay/common
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/naika/overlay
+PRODUCT_PACKAGE_OVERLAYS += vendor/naika/overlay/common
 
 # Gapps
 ifeq ($(WITH_GAPPS), true)
@@ -116,25 +117,25 @@ ifeq ($(WITH_GAPPS), true)
 endif
 
 #Telephony
-$(call inherit-product, vendor/dot/config/telephony.mk)
+$(call inherit-product, vendor/naika/config/telephony.mk)
 
 # Packages
-$(call inherit-product, vendor/dot/config/packages.mk)
+$(call inherit-product, vendor/naika/config/packages.mk)
 
 # Bootanimation
-$(call inherit-product, vendor/dot/config/bootanimation.mk)
+$(call inherit-product, vendor/naika/config/bootanimation.mk)
 
 # Fonts
-$(call inherit-product, vendor/dot/config/fonts.mk)
+$(call inherit-product, vendor/naika/config/fonts.mk)
 
 # GFonts
-$(call inherit-product, vendor/dot/config/gfonts.mk)
+$(call inherit-product, vendor/naika/config/gfonts.mk)
 
 # Themes
-$(call inherit-product, vendor/dot/config/themes.mk)
+$(call inherit-product, vendor/naika/config/themes.mk)
 
 # RRO Overlays
-$(call inherit-product, vendor/dot/config/rro_overlays.mk)
+$(call inherit-product, vendor/naika/config/rro_overlays.mk)
 
 ifeq ($(EXTRA_FOD_ANIMATIONS),true)
 PRODUCT_PACKAGES += \
@@ -208,7 +209,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.iorapd.enable=true
 
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-  vendor/dot/build/security/releasekey
+  vendor/naika/build/security/releasekey
 
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= true
@@ -232,11 +233,11 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 endif
 
 # Sounds
-$(call inherit-product, vendor/dot/config/audio.mk)
+$(call inherit-product, vendor/naika/config/audio.mk)
 
 # Use gestures by default
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
-# Dot_props
-$(call inherit-product, vendor/dot/config/dot_props.mk)
+# naika_props
+$(call inherit-product, vendor/naika/config/naika_props.mk)

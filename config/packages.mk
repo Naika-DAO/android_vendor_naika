@@ -93,7 +93,7 @@ PRODUCT_PACKAGES += \
     PrebuiltColorBundles \
     DotWallpapers
 
-ifeq ($(DOT_OFFICIAL), true)
+ifeq ($(Naika_OFFICIAL), true)
 PRODUCT_PACKAGES += \
     SystemUpdates
 endif

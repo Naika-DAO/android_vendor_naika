@@ -1,10 +1,10 @@
-include vendor/dot/config/BoardConfigKernel.mk
+include vendor/naika/config/BoardConfigKernel.mk
 
 ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
-include vendor/dot/config/BoardConfigQcom.mk
+include vendor/naika/config/BoardConfigQcom.mk
 endif
 
-include vendor/dot/config/BoardConfigSoong.mk
+include vendor/naika/config/BoardConfigSoong.mk
 
 # Namespace for fwk-detect
 TARGET_FWK_DETECT_PATH ?= hardware/qcom-caf/common
