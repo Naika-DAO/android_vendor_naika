@@ -14,8 +14,7 @@
 # limitations under the License.
 #
 
-ifeq ($(WITH_GAPPS), true)
-    # RRO Overlays
+# RRO Overlays
     PRODUCT_PACKAGES += \
         NexusLauncherOverlay \
         PixelLauncherCustomOverlay \
@@ -44,4 +43,3 @@ ifeq ($(WITH_GAPPS), true)
         PixelFwResOverlay \
         GoogleConfigOverlay \
         SystemUIGoogleOverlay
-endif

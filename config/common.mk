@@ -111,12 +111,16 @@ PRODUCT_RESTRICT_VENDOR_FILES := false
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/naika/overlay
 PRODUCT_PACKAGE_OVERLAYS += vendor/naika/overlay/common
 
-# Gapps
+
 ifeq ($(WITH_GAPPS), true)
+    # Gapps
     $(call inherit-product, vendor/gapps/config.mk)
+
+    # RRO Overlays
+    $(call inherit-product, vendor/naika/config/rro_overlays.mk)
 endif
 
-#Telephony
+# Telephony
 $(call inherit-product, vendor/naika/config/telephony.mk)
 
 # Packages
@@ -133,9 +137,6 @@ $(call inherit-product, vendor/naika/config/gfonts.mk)
 
 # Themes
 $(call inherit-product, vendor/naika/config/themes.mk)
-
-# RRO Overlays
-$(call inherit-product, vendor/naika/config/rro_overlays.mk)
 
 ifeq ($(EXTRA_FOD_ANIMATIONS),true)
 PRODUCT_PACKAGES += \
