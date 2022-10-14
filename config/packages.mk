@@ -91,7 +91,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Customizations \
     PrebuiltColorBundles \
-    DotWallpapers
+    DotWallpapers \
+    NaikaSetupWizard
 
 ifeq ($(Naika_OFFICIAL), true)
 PRODUCT_PACKAGES += \
