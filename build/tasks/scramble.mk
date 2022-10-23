@@ -1,6 +1,7 @@
 # Copyright (C) 2017 Unlegacy-Android
 # Copyright (C) 2017 The LineageOS Project
 # Copyright (C) 2021 The dotOS Project
+# Copyright (C) 2022 The naikaOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,15 +16,15 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# naikaOS OTA update package
+# naikaOS Fastboot update package
 
-NAIKA_TARGET_PACKAGE := $(PRODUCT_OUT)/$(NAIKA_VERSION).zip
+NAIKA_TARGET_PACKAGE := $(PRODUCT_OUT)/$(NAIKA_VERSION)-fastboot.zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 
-.PHONY: bacon
-bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(NAIKA_TARGET_PACKAGE)
+.PHONY: scramble
+scramble: $(INTERNAL_UPDATE_PACKAGE_TARGET)
+	$(hide) ln -f $(INTERNAL_UPDATE_PACKAGE_TARGET) $(NAIKA_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(NAIKA_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(NAIKA_TARGET_PACKAGE).sha256sum
 	echo -e ${CL_RED}"░▒█▄░▒█░█▀▀▄░▀█▀░▒█░▄▀░█▀▀▄░░░▒█▀▀▀█░▒█▀▀▀█"${CL_RED}
 	echo -e ${CL_CYN}"░▒█▒█▒█▒█▄▄█░▒█░░▒█▀▄░▒█▄▄█░░░▒█░░▒█░░▀▀▀▄▄"${CL_CYN}
@@ -32,7 +33,7 @@ bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
 	@echo -e "      naikaOS           "
 	@echo -e "Bringing Web3 to mobile!"
 	@echo -e ""
-	@echo -e ${CL_YLW} " Grab Some Cookies and Flash!!" ${CL_YLW}
+	@echo -e ${CL_YLW} " Grab Some Cookies and Fastboot Flash!!" ${CL_YLW}
 	@echo -e ${CL_BLD}${CL_RED}"===============================-Package complete-==============================="${CL_RED}
 	@echo -e ${CL_BLD}${CL_YLW}"Zip: "${CL_YLW} $(NAIKA_TARGET_PACKAGE)${CL_RST}
 	@echo -e ${CL_BLD}${CL_YLW}"SHA256: "${CL_YLW}" `cat $(NAIKA_TARGET_PACKAGE).sha256sum | awk '{print $$1}' `"${CL_RST}
