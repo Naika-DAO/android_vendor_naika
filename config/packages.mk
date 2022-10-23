@@ -1,4 +1,5 @@
 # Copyright (C) 2020 Project dotOS
+# Copyright (C) 2022 Naika-DAO
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,6 +49,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fsck.exfat \
     mkfs.exfat \
+    fsck.ntfs \
+    mke2fs \
+    mkfs.ntfs \
+    mount.ntfs
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/bin/fsck.ntfs \
+    system/bin/mkfs.ntfs \
+    system/bin/mount.ntfs \
+    system/%/libfuse-lite.so \
+    system/%/libntfs-3g.so
 
 # Openssh
 PRODUCT_PACKAGES += \
@@ -83,18 +95,15 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 PRODUCT_PACKAGES += \
     RepainterServicePriv \
 
-# Dot Packages
-PRODUCT_PACKAGES += \
-    Music
-
-# Dot Customizations
+# Naika extras
 PRODUCT_PACKAGES += \
     Customizations \
     PrebuiltColorBundles \
-    DotWallpapers \
-    NaikaSetupWizard
+    NaikaWallpapers \
+    NaikaSetupWizard \
+    NexusLauncherOverlay
 
-ifeq ($(Naika_OFFICIAL), true)
+ifeq ($(NAIKA_OFFICIAL), true)
 PRODUCT_PACKAGES += \
     SystemUpdates
 endif

@@ -1,7 +1,7 @@
-// dotOS soong configs
+// naikaOS soong configs
 
 bootstrap_go_package {
-    name: "soong-dot-generator",
+    name: "soong-naika-generator",
     pkgPath: "naika/soong/generator",
     deps: [
         "blueprint",
@@ -17,7 +17,7 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-dot_generator {
+naika_generator {
     name: "generated_kernel_includes",
 
     // The headers make command
@@ -48,7 +48,7 @@ cc_library_headers {
 soong_config_module_type {
     name: "camera_needs_client_info",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     bool_variables: ["camera_needs_client_info"],
     properties: ["cppflags"],
 }
@@ -65,7 +65,7 @@ camera_needs_client_info {
 soong_config_module_type {
     name: "gralloc_10_usage_bits",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     value_variables: ["additional_gralloc_10_usage_bits"],
     properties: ["cppflags"],
 }
@@ -82,7 +82,7 @@ gralloc_10_usage_bits {
 soong_config_module_type {
     name: "has_hh_vsync_issue",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     bool_variables: ["has_hh_vsync_issue"],
     properties: ["cppflags"],
 }
@@ -98,7 +98,7 @@ has_hh_vsync_issue {
 soong_config_module_type {
     name: "target_process_sdk_version_overrides",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     value_variables: ["target_process_sdk_version_override"],
     properties: ["cppflags"],
 }
@@ -115,7 +115,7 @@ target_process_sdk_version_overrides {
 soong_config_module_type {
     name: "target_shim_libs",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     value_variables: ["target_ld_shim_libs"],
     properties: ["cppflags"],
 }
@@ -132,7 +132,7 @@ target_shim_libs {
 soong_config_module_type {
     name: "vendor_init",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     value_variables: ["target_init_vendor_lib"],
     properties: ["whole_static_libs"],
 }
@@ -149,7 +149,7 @@ vendor_init {
 soong_config_module_type {
     name: "surfaceflinger_udfps_lib",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     value_variables: ["target_surfaceflinger_udfps_lib"],
     properties: [
         "cppflags",
@@ -170,7 +170,7 @@ surfaceflinger_udfps_lib {
 soong_config_module_type {
     name: "target_uses_prebuilt_dynamic_partitions",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     bool_variables: ["target_uses_prebuilt_dynamic_partitions"],
     properties: ["cppflags"],
 }
@@ -186,7 +186,7 @@ target_uses_prebuilt_dynamic_partitions {
 soong_config_module_type {
     name: "ignores_ftp_pptp_conntrack_failure_defaults",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     bool_variables: ["ignores_ftp_pptp_conntrack_failure"],
     properties: ["cppflags"],
 }
@@ -203,7 +203,7 @@ ignores_ftp_pptp_conntrack_failure_defaults {
 soong_config_module_type {
     name: "needs_netd_direct_connect_rule",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     bool_variables: ["needs_netd_direct_connect_rule"],
     properties: ["cppflags"],
 }
@@ -220,7 +220,7 @@ needs_netd_direct_connect_rule {
 soong_config_module_type {
     name: "legacy_hw_disk_encryption",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     bool_variables: ["legacy_hw_disk_encryption"],
     properties: ["cppflags"],
 }
@@ -237,7 +237,7 @@ legacy_hw_disk_encryption {
 soong_config_module_type {
     name: "no_cameraserver",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     bool_variables: ["has_legacy_camera_hal1"],
     properties: [
         "cppflags",
@@ -259,7 +259,7 @@ no_cameraserver {
 soong_config_module_type {
     name: "camera_in_mediaserver",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     bool_variables: ["has_legacy_camera_hal1"],
     properties: [
         "overrides",
@@ -288,7 +288,7 @@ camera_in_mediaserver {
 soong_config_module_type {
     name: "has_memfd_backport",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     bool_variables: ["has_memfd_backport"],
     properties: ["cppflags"],
 }
@@ -305,7 +305,7 @@ has_memfd_backport {
 soong_config_module_type {
     name: "bootloader_message_offset",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     value_variables: ["bootloader_message_offset"],
     properties: [
         "cflags",
@@ -326,7 +326,7 @@ bootloader_message_offset {
 soong_config_module_type {
     name: "camera_parameter_library",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     value_variables: ["uses_camera_parameter_lib"],
     properties: ["whole_static_libs"],
 }
@@ -344,7 +344,7 @@ camera_parameter_library {
 soong_config_module_type {
     name: "nvidia_enhancements",
     module_type: "cc_defaults",
-    config_namespace: "dotNvidiaVars",
+    config_namespace: "naikaNvidiaVars",
     bool_variables: ["uses_nvidia_enhancements"],
     properties: ["cppflags"],
 }
@@ -362,7 +362,7 @@ nvidia_enhancements {
 soong_config_module_type {
     name: "librmnetctl_pre_uplink",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     bool_variables: ["uses_pre_uplink_features_netmgrd"],
     properties: ["cflags"],
 }
@@ -379,7 +379,7 @@ librmnetctl_pre_uplink {
 soong_config_module_type {
     name: "qti_camera_device",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     bool_variables: ["uses_qti_camera_device"],
     properties: [
         "cppflags",
@@ -400,7 +400,7 @@ qti_camera_device {
 soong_config_module_type {
     name: "camera_boottime_timestamp",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     bool_variables: ["needs_camera_boottime_timestamp"],
     properties: [
         "cflags",
@@ -419,7 +419,7 @@ camera_boottime_timestamp {
 soong_config_module_type {
     name: "extended_compress_format",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     bool_variables: ["supports_extended_compress_format"],
     properties: ["cflags"],
 }
@@ -436,7 +436,7 @@ extended_compress_format {
 soong_config_module_type {
     name: "vold_hw_fde",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     bool_variables: ["supports_hw_fde"],
     properties: [
         "cflags",
@@ -459,7 +459,7 @@ vold_hw_fde {
 soong_config_module_type {
     name: "vold_hw_fde_perf",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     bool_variables: ["supports_hw_fde_perf"],
     properties: [
         "cflags",
@@ -480,7 +480,7 @@ vold_hw_fde_perf {
 soong_config_module_type {
     name: "qti_cryptfshw_qsee",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     bool_variables: ["should_wait_for_qsee"],
     properties: ["cflags"],
 }
@@ -497,7 +497,7 @@ qti_cryptfshw_qsee {
 soong_config_module_type {
     name: "disable_postrender_cleanup",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     bool_variables: ["disable_postrender_cleanup"],
     properties: ["cppflags"],
 }
@@ -514,7 +514,7 @@ disable_postrender_cleanup {
 soong_config_module_type {
     name: "surfaceflinger_qcom_extensions",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     value_variables: ["qcom_display_headers_namespace"],
     properties: [
         "cppflags",
@@ -535,7 +535,7 @@ surfaceflinger_qcom_extensions {
 soong_config_module_type {
     name: "stagefright_qcom_legacy",
     module_type: "cc_defaults",
-    config_namespace: "dotQcomVars",
+    config_namespace: "naikaQcomVars",
     bool_variables: ["uses_qcom_bsp_legacy"],
     properties: ["cppflags"],
 }
@@ -552,7 +552,7 @@ stagefright_qcom_legacy {
 soong_config_module_type {
     name: "inputdispatcher_skip_event_key",
     module_type: "cc_defaults",
-    config_namespace: "dotGlobalVars",
+    config_namespace: "naikaGlobalVars",
     value_variables: ["target_inputdispatcher_skip_event_key"],
     properties: ["cppflags"],
 }

@@ -19,7 +19,7 @@ $(call inherit-product-if-exists, vendor/extra/product.mk)
 # branding
 include vendor/naika/config/branding.mk
 
-PRODUCT_BRAND ?= NaikaOS
+PRODUCT_BRAND ?= naikaOS
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -43,7 +43,10 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/naika/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/naika/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/naika/prebuilt/common/bin/50-dot.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-dot.sh
+    vendor/naika/prebuilt/common/bin/50-naika.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-naika.sh
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/addon.d/50-naika.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
@@ -89,9 +92,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_COPY_FILES += \
     vendor/naika/prebuilt/common/bin/clean_cache.sh:system/bin/clean_cache.sh
 
-# Don't compile SystemUITests
-# EXCLUDE_SYSTEMUI_TESTS := true
-
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 
@@ -108,16 +108,13 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Device Overlays
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/naika/overlay
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/naika/overlay/common
 PRODUCT_PACKAGE_OVERLAYS += vendor/naika/overlay/common
 
 
 ifeq ($(WITH_GAPPS), true)
     # Gapps
     $(call inherit-product, vendor/gapps/config.mk)
-
-    # RRO Overlays
-    $(call inherit-product, vendor/naika/config/rro_overlays.mk)
 endif
 
 # Telephony
@@ -138,11 +135,6 @@ $(call inherit-product, vendor/naika/config/gfonts.mk)
 # Themes
 $(call inherit-product, vendor/naika/config/themes.mk)
 
-ifeq ($(EXTRA_FOD_ANIMATIONS),true)
-PRODUCT_PACKAGES += \
-     UdfpsResources
- endif
-
 # SystemUI plugins
 PRODUCT_PACKAGES += \
     QuickAccessWallet
@@ -152,19 +144,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.google.ime.bs_theme=true \
     ro.com.google.ime.theme_id=5 \
     ro.com.google.ime.system_lm_dir=/product/usr/share/ime/google/d3_lms
-
-# SetupWizard configuration
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.setupwizard.enterprise_mode=1 \
-    ro.setupwizard.esim_cid_ignore=00000001 \
-    setupwizard.feature.baseline_setupwizard_enabled=true \
-    setupwizard.feature.day_night_mode_enabled=true \
-    setupwizard.feature.portal_notification=true \
-    setupwizard.feature.show_pai_screen_in_main_flow.carrier1839=false \
-    setupwizard.feature.show_pixel_tos=true \
-    setupwizard.feature.show_support_link_in_deferred_setup=false \
-    setupwizard.feature.skip_button_use_mobile_data.carrier1839=true \
-    setupwizard.theme=glif_v3_light
 
 # StorageManager configuration
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -213,7 +192,7 @@ PRODUCT_EXTRA_RECOVERY_KEYS += \
   vendor/naika/build/security/releasekey
 
 # Face Unlock
-TARGET_FACE_UNLOCK_SUPPORTED ?= true
+TARGET_FACE_UNLOCK_SUPPORTED ?= false
 ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
 PRODUCT_PACKAGES += \
     FaceUnlockService

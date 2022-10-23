@@ -6,12 +6,12 @@ import (
 	"android/soong/android"
 )
 
-func dotExpandVariables(ctx android.ModuleContext, in string) string {
-	dotVars := ctx.Config().VendorConfig("dotVarsPlugin")
+func naikaExpandVariables(ctx android.ModuleContext, in string) string {
+	naikaVars := ctx.Config().VendorConfig("naikaVarsPlugin")
 
 	out, err := android.Expand(in, func(name string) (string, error) {
-		if dotVars.IsSet(name) {
-			return dotVars.String(name), nil
+		if naikaVars.IsSet(name) {
+			return naikaVars.String(name), nil
 		}
 		// This variable is not for us, restore what the original
 		// variable string will have looked like for an Expand

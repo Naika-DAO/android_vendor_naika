@@ -28,7 +28,7 @@ import (
 )
 
 func init() {
-	android.RegisterModuleType("dot_generator", GeneratorFactory)
+	android.RegisterModuleType("naika_generator", GeneratorFactory)
 
 	pctx.HostBinToolVariable("sboxCmd", "sbox")
 }
@@ -188,7 +188,9 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 					ctx.ModuleErrorf("host tool %q missing output file", tool)
 				}
 			default:
-				ctx.ModuleErrorf("unknown dependency on %q", ctx.OtherModuleName(module))
+				if !android.IsSourceDepTagWithOutputTag(ctx.OtherModuleDependencyTag(module), "") {
+					ctx.ModuleErrorf("unknown dependency on %q", ctx.OtherModuleName(module))
+				}
 			}
 		})
 	}
@@ -212,12 +214,12 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	if depRoot == "" {
 		depRoot = ctx.ModuleDir()
 	} else {
-		depRoot = dotExpandVariables(ctx, depRoot)
+		depRoot = naikaExpandVariables(ctx, depRoot)
 	}
 
 	// Glob dep_files property
 	for _, dep_file := range g.properties.Dep_files {
-		dep_file = dotExpandVariables(ctx, dep_file)
+		dep_file = naikaExpandVariables(ctx, dep_file)
 		globPath := filepath.Join(depRoot, dep_file)
 		paths, err := ctx.GlobWithDeps(globPath, nil)
 		if err != nil {
@@ -229,7 +231,7 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 		}
 	}
 
-	cmd := dotExpandVariables(ctx, String(g.properties.Cmd))
+	cmd := naikaExpandVariables(ctx, String(g.properties.Cmd))
 
 	rawCommand, err := android.Expand(cmd, func(name string) (string, error) {
 		switch name {
@@ -277,6 +279,7 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 		ImplicitOutput(dummyDep).
 		Implicits(g.inputDeps).
 		Implicits(g.implicitDeps)
+
 	rule.Command().Text("touch").Output(dummyDep)
 
 	g.outputDeps = append(g.outputDeps, dummyDep)

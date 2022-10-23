@@ -30,14 +30,13 @@ import urllib.request
 DEBUG = False
 default_manifest = ".repo/manifest.xml"
 
-custom_local_manifest = ".repo/local_manifests/naika_manifest.xml"
-custom_default_revision = "twelve"
+custom_local_manifest = ".repo/local_manifests/roomservice.xml"
+custom_default_revision = "zero"
 custom_dependencies = "naika.dependencies"
-org_manifest = "dotOS-Devices"  # leave empty if org is provided in manifest
-org_display = "DotOS-Devices"  # needed for displaying
+org_manifest = "naikaOS-Devices"  # leave empty if org is provided in manifest
+org_display = "Naika-DAO-Devices"  # needed for displaying
 
 github_auth = None
-
 
 local_manifests = '.repo/local_manifests'
 if not os.path.exists(local_manifests):
@@ -323,13 +322,13 @@ def main():
     for repository in repositories:
         repo_name = repository['name']
 
-        if not (repo_name.startswith("device_") and
+        if not (repo_name.startswith("android_device_") and
                 repo_name.endswith("_" + device)):
             continue
         print("Found repository: %s" % repository['name'])
 
         fallback_branch = detect_revision(repository)
-        manufacturer = repo_name[7:-(len(device)+1)]
+        manufacturer = repo_name[15:-(len(device)+1)]
         repo_path = "device/%s/%s" % (manufacturer, device)
         adding = [{'repository': repo_name, 'target_path': repo_path}]
 
