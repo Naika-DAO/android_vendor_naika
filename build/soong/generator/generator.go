@@ -29,8 +29,6 @@ import (
 
 func init() {
 	android.RegisterModuleType("naika_generator", GeneratorFactory)
-
-	pctx.HostBinToolVariable("sboxCmd", "sbox")
 }
 
 var String = proptools.String
@@ -266,11 +264,10 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	// Dummy output dep
 	dummyDep := android.PathForModuleGen(ctx, ".dummy_dep")
 
-	buildDir := android.PathForOutput(ctx, "generator")
-	genDir := android.PathForModuleGen(ctx)
-
-	// Use a RuleBuilder to create a rule that runs the command inside an sbox sandbox.
-	rule := android.NewRuleBuilder(pctx, ctx).Sbox(genDir, buildDir).SandboxTools()
+	genDir := android.PathForModuleGen(ctx)	
+	manifestPath := android.PathForModuleOut(ctx, "generator.sbox.textproto")	
+	// Use a RuleBuilder to create a rule that runs the command inside an sbox sandbox.	
+	rule := android.NewRuleBuilder(pctx, ctx).Sbox(genDir, manifestPath).SandboxTools()
 
 	rule.Command().
 		Text(rawCommand).
