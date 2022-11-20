@@ -21,8 +21,8 @@ NAIKA_TARGET_PACKAGE := $(PRODUCT_OUT)/$(NAIKA_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 
-.PHONY: bacon
-bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
+.PHONY: naika
+naika: $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(NAIKA_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(NAIKA_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(NAIKA_TARGET_PACKAGE).sha256sum
 	echo -e ${CL_RED}"░▒█▄░▒█░█▀▀▄░▀█▀░▒█░▄▀░█▀▀▄░░░▒█▀▀▀█░▒█▀▀▀█"${CL_RED}
